@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+       
+        .carousel {
+            display: flex;
+            animation: scroll 10s linear infinite;
+        }
+        
+        .carousel img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        
+        @keyframes scroll {
+            0%, 15% { transform: translateX(0); }
+            20%, 35% { transform: translateX(-100%); }
+            40%, 55% { transform: translateX(-200%); }
+            60%, 75% { transform: translateX(-300%); }
+            80%, 94% { transform: translateX(-400%); }
+            95%, 100% { transform: translateX(0); }
+        }
+        
+        .floating-label {
+            position: relative;
+        }
+        
+        .floating-label span {
+            position: absolute;
+            left: 10px;
+            top: -10px;
+            z-index: 10;
+            padding: 0 5px;
+        }
+        
+        
+        .dark-input {
+            background-color: #18181b; 
+            border: 2px solid #3f3f46; 
+            color: #f4f4f5; 
+        }
+        
+        .dark-input:focus {
+            border-color: white;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full px-6 py-4 bg-black text-white z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-white text-2xl font-bold"><a href="landingpage.html">DocMatch</a></div>
+          
+        </div>
+    </nav>
+    
+    <!-- Main Container -->
+    <div class="flex flex-col lg:flex-row min-h-screen pt-10">
+        <!-- Carousel Section - hidden on small screens, visible on lg+ -->
+        <div class="hidden lg:block lg:w-1/2 overflow-hidden relative">
+            <div class="carousel">
+                <img src="https://i.pinimg.com/736x/a4/8f/02/a48f023600498d8c65d29a010e0875c9.jpg" alt="Image 1">
+                <img src="https://i.ibb.co/RXGWBdN/10259343-4356046.jpg" alt="Image 2">
+                <img src="https://i.ibb.co/fVSLw1R5/4850064-29.jpg" alt="4850064-29" alt="Image 3">
+                <img src="https://i.pinimg.com/474x/3e/02/33/3e02335ec0676b1321ee742a27896e89.jpg" alt="Image 4">
+                <img src="https://i.pinimg.com/474x/64/81/86/648186bdb7490db17432bcef5b2fa048.jpg" alt="Image 5">
+            </div>
+        </div>
+        
+        <!-- Form Section -->
+        <div class="w-full lg:w-1/2 flex justify-center items-center p-4 md:p-8">
+            <div id="form-container" class="w-full max-w-3xl flex flex-col md:flex-row gap-6">
+                <!-- Login Form - Left side -->
+                <div id="login-info" class="w-full hover:transform hover:scale-110 md:w-1/2 transition-all duration-300 bg-white border-2 border-slate-600 rounded-xl shadow-xl p-6">
+                    <h2 id="cred-head" class="text-2xl font-bold text-zinc-900 text-center mb-6">Signup</h2>
+                    
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-bold text-zinc-900 mb-1">Email:</label>
+                        <input id="email" type="email" class="w-full py-2 px-3 rounded-md border-2 border-zinc-700 focus:border-red-700 focus:outline-none transition">
+                    </div>
+                   
+                    <div class="mb-4">
+                        <label for="password" class="block text-sm font-bold text-zinc-900 mb-1">Password:</label>
+                        <input id="password" type="password" class="w-full py-2 px-3 rounded-md border-2 border-zinc-700 focus:border-red-700 focus:outline-none transition" >
+                    </div>
+                    
+                    <div id="note" class="text-red-600 text-sm mt-2 hidden"></div>
+                    
+                    <button onclick="submit()" class="w-full mt-4 mb-3 rounded-md py-2.5 bg-zinc-900 text-white text-sm font-bold cursor-pointer shadow-xl hover:bg-zinc-700 transition">Submit</button>
+                    
+                    <button id="cred-switch" onclick="switchMode()" class="w-full mb-4 rounded-md py-2.5 border-2 border-zinc-900 text-zinc-900 text-sm font-bold cursor-pointer shadow-xl hover:bg-gray-200 transition">Login</button>
+                </div>
+                
+                <!-- Additional Signup Info - Right side -->
+                <div id="signup-info" class="w-full hover:transform hover:scale-110  md:w-1/2 bg-zinc-900 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-zinc-100 mb-4">Additional Information</h3>
+                    
+                    <div class="mb-4 floating-label">
+                        <span class="text-sm text-zinc-400 font-bold bg-zinc-900 px-2">Full Name</span>
+                        <input id="name" type="text" class="w-full py-2 px-4 rounded-md dark-input mt-0.5" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="mb-4 floating-label">
+                        <span class="text-sm text-zinc-400 font-bold bg-zinc-900 px-2">Phone No.</span>
+                        <input id="p-no" type="text" class="w-full py-2 px-4 rounded-md dark-input mt-0.5" placeholder="Enter your phone number">
+                    </div>
+                    
+                    <div class="mb-4 floating-label">
+                        <span class="text-sm text-zinc-400 font-bold bg-zinc-900 px-2">Reg. No.</span>
+                        <input id="reg-no" type="text" class="w-full py-2 px-4 rounded-md dark-input mt-0.5" placeholder="Enter your registration number">
+                    </div>
+                    
+                    <div id="sgn-note" class="text-zinc-400 text-sm mt-2 hidden">
+                        Note: <span id="sgn-note-text" class="text-red-600"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        let mode = "signup";
+        
+        // Function to toggle between login and signup modes
+        function switchMode() {
+            const loginForm = document.getElementById('login-info');
+            const signupInfo = document.getElementById('signup-info');
+            const credHead = document.getElementById('cred-head');
+            const credSwitch = document.getElementById('cred-switch');
+            const note = document.getElementById('note');
+            
+            
+            if (mode === "signup") {
+                mode = "login";
+                credHead.innerText = "Login";
+                credSwitch.innerText = "Signup";
+                
+               
+                signupInfo.classList.add('hidden');
+                
+                // On desktop/tablet, expand login form to full width
+                if (window.innerWidth >= 768) {
+                    loginForm.classList.remove('md:w-1/2');
+                    loginForm.classList.add('md:w-full', 'max-w-lg', 'mx-auto');
+                }
+            } else {
+                mode = "signup";
+                credHead.innerText = "Signup";
+                credSwitch.innerText = "Login";
+                
+               
+                signupInfo.classList.remove('hidden');
+                
+                
+                loginForm.classList.remove('md:w-full', 'max-w-lg', 'mx-auto');
+                loginForm.classList.add('md:w-1/2');
+            }
+            
+           
+            note.innerText = "";
+            note.classList.add('hidden');
+            
+            const sgnNote = document.getElementById('sgn-note');
+            if (sgnNote) {
+                sgnNote.classList.add('hidden');
+            }
+        }
+
+        function submit() {
+            const note = document.getElementById("note");
+            note.classList.remove('hidden');
+            
+            if (mode === "login") {
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", `../php/${mode}.php`, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        note.innerText = xhr.responseText.slice(1);
+                        setTimeout(() => {
+                            if (xhr.responseText[0] == 'u') {
+                                window.location.href = "user_portal.php";
+                            } else {
+                                window.location.href = "admin_portal.php";
+                            }
+                        }, 3000);
+                    } else {
+                        alert("An error occurred: " + xhr.status);
+                    }
+                };
+                
+                const requestData = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+                xhr.send(requestData);
+            } else {
+                const sgnNote = document.getElementById("sgn-note");
+                const sgnNoteText = document.getElementById("sgn-note-text");
+                
+                sgnNoteText.innerHTML = "";
+                sgnNote.classList.add('hidden');
+                
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const name = document.getElementById("name").value;
+                const pNo = document.getElementById("p-no").value;
+                const regNo = document.getElementById("reg-no").value;
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", `../php/${mode}.php`, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        if (xhr.responseText[0] === '!') {
+                            sgnNote.classList.remove('hidden');
+                            sgnNoteText.innerHTML = xhr.responseText.slice(1);
+                        } else {
+                            note.innerText = xhr.responseText.slice(1);
+                        }
+                    } else {
+                        alert("An error occurred: " + xhr.status);
+                    }
+                };
+                
+                const requestData = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&reg_number=${encodeURIComponent(regNo)}&name=${encodeURIComponent(name)}&phn_number=${pNo}`;
+                xhr.send(requestData);
+            }
+        }
+        
+        // Initialize the UI based on the default mode
+        window.onload = function() {
+            // Set initial state
+            if (mode === "login") {
+                document.getElementById('signup-info').classList.add('hidden');
+                document.getElementById('cred-head').innerText = "Login";
+                document.getElementById('cred-switch').innerText = "Signup";
+                
+                // Expand login form if on desktop
+                if (window.innerWidth >= 768) {
+                    document.getElementById('login-info').classList.remove('md:w-1/2');
+                    document.getElementById('login-info').classList.add('md:w-full', 'max-w-lg', 'mx-auto');
+                }
+            }
+        };
+    </script>
+</body>
+</html>
